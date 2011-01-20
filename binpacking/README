@@ -1,0 +1,5 @@
+Check zip container size by doing totality of directory size divided by cardinality of files
+
+One N iteration and build the zip in that way
+
+python binpacking.py [folder path] [zip name] [zip container size]
