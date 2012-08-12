@@ -1,0 +1,6 @@
+filespy
+
+struct __stat64 fileinfo;
+
+if(-1 != _stat64(filename, &fileinfo)
+return fileinfo.st_mtime;

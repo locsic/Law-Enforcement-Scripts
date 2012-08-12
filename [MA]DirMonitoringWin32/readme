@@ -1,1 +1,24 @@
 filespy
+
+struct __stat64 fileinfo;
+
+if(-1 != _stat64(filename, &fileinfo)
+return fileinfo.st_mtime;
+
+http://msdn.microsoft.com/en-us/library/aa365261(VS.85).aspx
+
+http://stackoverflow.com/questions/1083372/listening-to-file-changes-in-c-c-on-windows
+
+http://qualapps.blogspot.com/2010/05/understanding-readdirectorychangesw.htmlA
+
+http://code.google.com/p/simplefilewatcher/A
+
+http://www.themacaque.com/?p=1013A
+
+http://www.codeproject.com/Articles/950/CDirectoryChangeWatcher-ReadDirectoryChangesW-all
+
+http://hurricane-eyeent.blogspot.com/2012/08/how-to-monitor-directory-for-changes.html
+
+http://stackoverflow.com/questions/57254/how-to-keep-readdirectorychangesw-from-missing-file-changes
+
+For the Windows 9x driver, the heart of FileMon is in the virtual device driver, Filevxd.vxd. It is dynamically loaded, and in its initialization it installs a file system filter via the VxD service, IFSMGR_InstallFileSystemApiHook, to insert itself onto the call chain of all file system requests. On Windows NT the heart of FileMon is a file system driver that creates and attaches filter device objects to target file system device objects so that FileMon will see all IRPs and FastIO requests directed at drives. When FileMon sees an open, create or close call, it updates an internal hash table that serves as the mapping between internal file handles and file path names. Whenever it sees calls that are handle based, it looks up the handle in the hash table to obtain the full name for display. If a handle-based access references a file opened before FileMon started, FileMon will fail to find the mapping in its hash table and will simply present the handle's value instead.
