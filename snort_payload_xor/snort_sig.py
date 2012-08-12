@@ -43,8 +43,8 @@ def r_payload(data, sig, offset):
     presig = int(data[x:x+KEY_SIZE],HEX_DECODE)
     if(int(sig,HEX_DECODE) - (presig ^ key) == 0):
       return 1
-    else:
-      return 0
+    #else:
+    #  return 0
   #Base case
   return 0
 
