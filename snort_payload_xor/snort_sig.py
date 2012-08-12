@@ -6,6 +6,8 @@ import csv
 # @Version .1
 # @Python 3.x
 # @todo
+#   Assumption is made that the signature size is the same as the keysize. 
+#   Account for differing signature and key sizes.
 #
 #
 
