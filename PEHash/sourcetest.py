@@ -8,6 +8,7 @@ from win32api import GetFileVersionInfo, LOWORD, HIWORD
 my_path="C:\\"
 control=dict()
 hits=[]
+output="PE_Output\\"
 
 def get_version(filename):
 	try:
@@ -32,7 +33,7 @@ def file_recurse(path):
 					counter = 0
 					for section in pe.sections:
 						try:
-							if(control[section.Name]-.3 <= section.get_entropy() <= control[section.Name]+.3):
+							if(control[section.Name]-.4 <= section.get_entropy() <= control[section.Name]+.4):
 								counter += 1
 						except KeyError:
 							print "It's ok about keyerror"
@@ -68,7 +69,24 @@ def test_entropy(path):
 	except pefile.PEFormatError:
 		print "dun goofed"
 
+def copy_floppy(paths):
+	if not os.path.exists(output):
+		os.makedirs(output)
+	for item in hits:
+		try:
+			copy2(item, output)
+		except:
+			print "same file?"
+			print item
+
 if __name__ == '__main__':
-	control_entropy(sys.argv[1])
-	file_recurse(my_path)
-	print hits
+	#control_entropy(sys.argv[1])
+	test_entropy(sys.argv[1])
+	#output = sys.argv[2]
+	#file_recurse(my_path)
+	#copy_floppy(hits)
+	#f = open(output+"hits.txt", 'wb')
+	#for item in hits:
+	#	f.write(item)
+	#	f.write('\n')
+	#f.close()

@@ -1717,10 +1717,13 @@ class PE:
             if stat.st_size == 0:
                 raise PEFormatError('The file is empty')
             try:
-                fd = file(fname, 'rb')
-                self.fileno = fd.fileno()
-                self.__data__ = mmap.mmap(self.fileno, 0, access=mmap.ACCESS_READ)
-                self.__from_file = True
+                try:
+                  fd = file(fname, 'rb')
+                  self.fileno = fd.fileno()
+                  self.__data__ = mmap.mmap(self.fileno, 0, access=mmap.ACCESS_READ)
+                  self.__from_file = True
+                except IOError:
+                  print 'An error occurred'
             finally:
                 fd.close()
         elif data:
